@@ -36,7 +36,7 @@ public final class HooksSettings implements SettingsHolder {
         "This must be true if you want to use other bedrock features."
     })
     public static final Property<Boolean> HOOK_FLOODGATE_PLAYER =
-        newProperty("Hooks.floodgate", false);
+        newProperty("Hooks.floodgate", true);
 
     @Comment("Allow bedrock players join without check isValidName?")
     public static final Property<Boolean> IGNORE_BEDROCK_NAME_CHECK =

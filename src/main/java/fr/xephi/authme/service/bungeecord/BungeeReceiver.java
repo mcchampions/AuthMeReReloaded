@@ -118,11 +118,8 @@ public class BungeeReceiver implements PluginMessageListener, SettingsDependent 
         }
 
         // Handle type
-        switch (type.get()) {
-            case PERFORM_LOGIN:
-                performLogin(argument);
-                break;
-            default:
+        if (type.get() == MessageType.PERFORM_LOGIN) {
+            performLogin(argument);
         }
     }
 

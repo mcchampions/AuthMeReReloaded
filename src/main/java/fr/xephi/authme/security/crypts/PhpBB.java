@@ -8,6 +8,7 @@ import fr.xephi.authme.security.crypts.description.SaltType;
 import fr.xephi.authme.security.crypts.description.Usage;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 import static fr.xephi.authme.security.HashUtils.isEqual;
@@ -72,14 +73,10 @@ public class PhpBB implements EncryptionMethod {
         private static final String itoa64 = "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
         private static String md5(String data) {
-            try {
-                byte[] bytes = data.getBytes("ISO-8859-1");
-                MessageDigest md5er = HashUtils.getDigest(MessageDigestAlgorithm.MD5);
-                byte[] hash = md5er.digest(bytes);
-                return bytes2hex(hash);
-            } catch (UnsupportedEncodingException e) {
-                throw new UnsupportedOperationException(e);
-            }
+            byte[] bytes = data.getBytes(StandardCharsets.ISO_8859_1);
+            MessageDigest md5er = HashUtils.getDigest(MessageDigestAlgorithm.MD5);
+            byte[] hash = md5er.digest(bytes);
+            return bytes2hex(hash);
         }
 
         private static int hexToInt(char ch) {

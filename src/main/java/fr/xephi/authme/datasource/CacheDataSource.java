@@ -73,7 +73,7 @@ public class CacheDataSource implements DataSource {
         cachedAuths = CacheBuilder.newBuilder()
             .refreshAfterWrite(5, TimeUnit.MINUTES)
             .expireAfterAccess(15, TimeUnit.MINUTES)
-            .build(new CacheLoader<String, Optional<PlayerAuth>>() {
+            .build(new CacheLoader<>() {
                 @Override
                 public Optional<PlayerAuth> load(String key) {
                     return Optional.ofNullable(source.getAuth(key));

@@ -9,6 +9,7 @@ import fr.xephi.authme.service.BukkitService;
 import fr.xephi.authme.settings.Settings;
 import fr.xephi.authme.settings.properties.HooksSettings;
 import fr.xephi.authme.settings.properties.SecuritySettings;
+import fr.xephi.authme.util.PlayerUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -16,11 +17,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import javax.inject.Inject;
+import java.util.Objects;
 import java.util.UUID;
 
 import static org.bukkit.Bukkit.getServer;
 
-public class BedrockAutoLoginListener implements Listener {
+public class AutoLoginListener implements Listener {
     private final AuthMeApi authmeApi = AuthMeApi.getInstance();
     @Inject
     private BukkitService bukkitService;
@@ -32,11 +34,15 @@ public class BedrockAutoLoginListener implements Listener {
     @Inject
     private Settings settings;
 
-    public BedrockAutoLoginListener() {
+    public AutoLoginListener() {
     }
 
     private boolean isBedrockPlayer(UUID uuid) {
         return settings.getProperty(HooksSettings.HOOK_FLOODGATE_PLAYER) && settings.getProperty(SecuritySettings.FORCE_LOGIN_BEDROCK) && org.geysermc.floodgate.api.FloodgateApi.getInstance().isFloodgateId(uuid) && getServer().getPluginManager().getPlugin("floodgate") != null;
+    }
+
+    private boolean isTheSameIp(Player player) {
+        return Objects.equals(PlayerUtils.getPlayerIp(player), authmeApi.getLastIp(player.getName()));
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -48,6 +54,11 @@ public class BedrockAutoLoginListener implements Listener {
             if (isBedrockPlayer(uuid) && !authmeApi.isAuthenticated(player) && authmeApi.isRegistered(name)) {
                 authmeApi.forceLogin(player, true);
                 messages.send(player, MessageKey.BEDROCK_AUTO_LOGGED_IN);
+            } else {
+                if (isTheSameIp(player)) {
+                    authmeApi.forceLogin(player, true);
+                    messages.send(player, MessageKey.SAME_IP_AUTO_LOGGED_IN);
+                }
             }
         },20L);
     }

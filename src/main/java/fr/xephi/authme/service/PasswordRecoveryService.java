@@ -168,7 +168,7 @@ public class PasswordRecoveryService implements Reloadable, HasCleanup {
         String playerAddress = PlayerUtils.getPlayerIp(player);
         String storedAddress = successfulRecovers.get(name);
 
-        return storedAddress != null && playerAddress.equals(storedAddress);
+        return playerAddress.equals(storedAddress);
     }
 
     @Override

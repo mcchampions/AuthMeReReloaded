@@ -33,6 +33,6 @@ public class PurgeBannedPlayersCommand implements ExecutableCommand {
             namedBanned.add(offlinePlayer.getName().toLowerCase(Locale.ROOT));
         }
 
-        purgeService.purgePlayers(sender, namedBanned, bannedPlayers.toArray(new OfflinePlayer[bannedPlayers.size()]));
+        purgeService.purgePlayers(sender, namedBanned, bannedPlayers.toArray(new OfflinePlayer[0]));
     }
 }

@@ -103,18 +103,13 @@ public class PlayerListener implements Listener {
     // Lowest priority to apply fast protection checks
     @EventHandler(priority = EventPriority.LOWEST)
     public void onAsyncPlayerPreLoginEventLowest(AsyncPlayerPreLoginEvent event) {
-
         if (event.getLoginResult() != AsyncPlayerPreLoginEvent.Result.ALLOWED) {
             return;
         }
         final String name = event.getName();
 
         // NOTE: getAddress() sometimes returning null, we don't want to handle this race condition
-        if (event.getAddress() == null) {
-            event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER,
-                messages.retrieveSingle(name, MessageKey.KICK_UNRESOLVED_HOSTNAME));
-            return;
-        }
+        event.getAddress();
 
         if (validationService.isUnrestricted(name)) {
             return;
@@ -130,7 +125,6 @@ public class PlayerListener implements Listener {
         } catch (FailedVerificationException e) {
             event.setKickMessage(messages.retrieveSingle(name, e.getReason(), e.getArgs()));
             event.setLoginResult(AsyncPlayerPreLoginEvent.Result.KICK_OTHER);
-
         }
     }
 

@@ -2,11 +2,14 @@ package fr.xephi.authme.listener;
 
 import fr.xephi.authme.message.MessageKey;
 
+import java.io.Serial;
+
 /**
  * Exception thrown when a verification has failed.
  */
 public class FailedVerificationException extends Exception {
 
+    @Serial
     private static final long serialVersionUID = 3903242223297960699L;
     private final MessageKey reason;
     private final String[] args;

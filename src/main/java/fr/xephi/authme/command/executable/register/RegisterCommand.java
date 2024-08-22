@@ -71,7 +71,7 @@ public class RegisterCommand extends PlayerCommand {
             management.performRegister(RegistrationMethod.TWO_FACTOR_REGISTRATION,
                 TwoFactorRegisterParams.of(player));
             return;
-        } else if (arguments.size() < 1) {
+        } else if (arguments.isEmpty()) {
             commonService.send(player, MessageKey.USAGE_REGISTER);
             return;
         }

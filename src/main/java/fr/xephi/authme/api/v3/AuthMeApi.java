@@ -38,7 +38,6 @@ import static fr.xephi.authme.listener.PlayerListener.PENDING_INVENTORIES;
  */
 @SuppressWarnings("unused")
 public class AuthMeApi {
-
     private static AuthMeApi singleton;
     private final AuthMe plugin;
     private final DataSource dataSource;

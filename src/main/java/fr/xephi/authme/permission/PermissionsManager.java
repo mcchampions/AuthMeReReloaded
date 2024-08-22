@@ -131,18 +131,13 @@ public class PermissionsManager implements Reloadable {
             return null;
         }
 
-        switch (type) {
-            case LUCK_PERMS:
-                return new LuckPermsHandler();
-            case PERMISSIONS_EX:
-                return new PermissionsExHandler();
-            case Z_PERMISSIONS:
-                return new ZPermissionsHandler();
-            case VAULT:
-                return new VaultHandler(server);
-            default:
-                throw new IllegalStateException("Unhandled permission type '" + type + "'");
-        }
+        return switch (type) {
+            case LUCK_PERMS -> new LuckPermsHandler();
+            case PERMISSIONS_EX -> new PermissionsExHandler();
+            case Z_PERMISSIONS -> new ZPermissionsHandler();
+            case VAULT -> new VaultHandler(server);
+            default -> throw new IllegalStateException("Unhandled permission type '" + type + "'");
+        };
     }
 
     /**
@@ -219,11 +214,10 @@ public class PermissionsManager implements Reloadable {
         }
 
         // Return default if sender is not a player or no permission system is in use
-        if (!(sender instanceof Player) || !isEnabled()) {
+        if (!(sender instanceof Player player) || !isEnabled()) {
             return permissionNode.getDefaultPermission().evaluate(sender);
         }
 
-        Player player = (Player) sender;
         return player.hasPermission(permissionNode.getNode());
     }
 

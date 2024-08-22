@@ -26,9 +26,7 @@ public class FirstSpawnCommand extends PlayerCommand {
             player.sendMessage("[AuthMe] First spawn has failed, please try to define the first spawn");
         } else {
             //String name= player.getName();
-            bukkitService.runTaskIfFolia(player, () -> {
-                TeleportUtils.teleport(player, spawnLoader.getFirstSpawn());
-            });
+            bukkitService.runTaskIfFolia(player, () -> TeleportUtils.teleport(player, spawnLoader.getFirstSpawn()));
             //player.teleport(spawnLoader.getFirstSpawn());
         }
     }

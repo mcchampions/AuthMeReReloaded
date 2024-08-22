@@ -229,10 +229,7 @@ public class SpawnLoader implements Reloadable {
      * @return True upon success, false otherwise
      */
     private boolean isValidSpawnPoint(Location location) {
-        if (location.getX() == 0 && location.getY() == 0 && location.getZ() == 0) {
-            return false;
-        }
-        return true;
+        return location.getX() != 0 || location.getY() != 0 || location.getZ() != 0;
     }
 
     /**

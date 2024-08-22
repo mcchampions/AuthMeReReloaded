@@ -1,5 +1,6 @@
 package fr.xephi.authme.mail;
 
+import java.io.Serial;
 import java.security.Provider;
 
 /* Copyright 2012 Google Inc.
@@ -17,6 +18,7 @@ import java.security.Provider;
 * limitations under the License.
 */
 public class OAuth2Provider extends Provider {
+ @Serial
  private static final long serialVersionUID = 1L;
 
  public OAuth2Provider() {

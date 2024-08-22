@@ -51,8 +51,7 @@ class ListenerService implements SettingsDependent {
      * @return true if the associated event should be canceled, false otherwise
      */
     public boolean shouldCancelEvent(Entity entity) {
-        if (entity instanceof Player) {
-            Player player = (Player) entity;
+        if (entity instanceof Player player) {
             return shouldCancelEvent(player);
         }
         return false;
@@ -94,9 +93,6 @@ class ListenerService implements SettingsDependent {
         if (validationService.isUnrestricted(name) || playerCache.isAuthenticated(name)){
             return true;
         }
-        if (!isRegistrationForced && !dataSource.isAuthAvailable(name)) {
-            return true;
-        }
-        return false;
+        return !isRegistrationForced && !dataSource.isAuthAvailable(name);
     }
 }

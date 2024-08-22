@@ -206,9 +206,7 @@ public class Whirlpool extends UnsaltedMethod {
                     L[i] ^= C[t][(int) (K[(i - t) & 7] >>> s) & 0xff];
                 }
             }
-            for (int i = 0; i < 8; i++) {
-                K[i] = L[i];
-            }
+            System.arraycopy(L, 0, K, 0, 8);
             K[0] ^= rc[r];
             /*
              * apply the r-th round transformation:
@@ -219,9 +217,7 @@ public class Whirlpool extends UnsaltedMethod {
                     L[i] ^= C[t][(int) (state[(i - t) & 7] >>> s) & 0xff];
                 }
             }
-            for (int i = 0; i < 8; i++) {
-                state[i] = L[i];
-            }
+            System.arraycopy(L, 0, state, 0, 8);
         }
         /*
          * apply the Miyaguchi-Preneel compression function:
@@ -308,7 +304,6 @@ public class Whirlpool extends UnsaltedMethod {
         if (bufferRem + sourceBits < 8) {
             // all remaining data fits on buffer[bufferPos], and there still
             // remains some space.
-            bufferBits += (int) sourceBits;
         } else {
             // buffer[bufferPos] is full:
             bufferPos++;
@@ -323,8 +318,8 @@ public class Whirlpool extends UnsaltedMethod {
                 bufferBits = bufferPos = 0;
             }
             buffer[bufferPos] = (byte) ((b << (8 - bufferRem)) & 0xff);
-            bufferBits += (int) sourceBits;
         }
+        bufferBits += (int) sourceBits;
     }
 
     /**
@@ -378,7 +373,7 @@ public class Whirlpool extends UnsaltedMethod {
      *               This method maintains the invariant: bufferBits &lt; 512
      */
     public void NESSIEadd(String source) {
-        if (source.length() > 0) {
+        if (!source.isEmpty()) {
             byte[] data = new byte[source.length()];
             for (int i = 0; i < source.length(); i++) {
                 data[i] = (byte) source.charAt(i);

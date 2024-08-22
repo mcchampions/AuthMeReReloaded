@@ -150,10 +150,9 @@ public class LuckPermsHandler implements PermissionHandler {
             return false;
         }
         user.data().clear(node -> {
-            if (!(node instanceof InheritanceNode)) {
+            if (!(node instanceof InheritanceNode inheritanceNode)) {
                 return false;
             }
-            InheritanceNode inheritanceNode = (InheritanceNode) node;
             return !inheritanceNode.equals(groupNode);
         });
 

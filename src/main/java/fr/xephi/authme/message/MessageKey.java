@@ -30,6 +30,11 @@ public enum MessageKey {
     BEDROCK_AUTO_LOGGED_IN("bedrock_auto_login.success"),
 
     /**
+     * Some ip auto login success!
+     */
+    SAME_IP_AUTO_LOGGED_IN("same_ip_auto_login.success"),
+
+    /**
      * In order to use this command you must be authenticated!
      */
     DENIED_COMMAND("error.denied_command"),

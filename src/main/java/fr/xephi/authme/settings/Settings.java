@@ -82,7 +82,6 @@ public class Settings extends SettingsManagerImpl {
         verificationEmailMessage = readFile("verification_code_email.html");
         recoveryCodeEmailMessage = readFile("recovery_code_email.html");
         shutdownEmailMessage = readFile("shutdown.html");
-        String country = readFile("GeoLite2-Country.mmdb");
     }
 
     @Override

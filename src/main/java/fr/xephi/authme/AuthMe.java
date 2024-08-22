@@ -16,7 +16,7 @@ import fr.xephi.authme.initialization.OnStartupTasks;
 import fr.xephi.authme.initialization.SettingsProvider;
 import fr.xephi.authme.initialization.TaskCloser;
 import fr.xephi.authme.listener.AdvancedShulkerFixListener;
-import fr.xephi.authme.listener.BedrockAutoLoginListener;
+import fr.xephi.authme.listener.AutoLoginListener;
 import fr.xephi.authme.listener.BlockListener;
 import fr.xephi.authme.listener.DoubleLoginFixListener;
 import fr.xephi.authme.listener.EntityListener;
@@ -204,12 +204,14 @@ public class AuthMe extends JavaPlugin {
         // Set up Metrics
         OnStartupTasks.sendMetrics(this, settings);
         if (settings.getProperty(SecuritySettings.SHOW_STARTUP_BANNER)) {
-            logger.info("\n" + "    ___         __  __    __  ___   \n" +
-                "   /   | __  __/ /_/ /_  /  |/  /__ \n" +
-                "  / /| |/ / / / __/ __ \\/ /|_/ / _ \\\n" +
-                " / ___ / /_/ / /_/ / / / /  / /  __/\n" +
-                "/_/  |_\\__,_/\\__/_/ /_/_/  /_/\\___/ \n" +
-                "                                    ");
+            logger.info("""
+
+                    ___         __  __    __  ___  \s
+                   /   | __  __/ /_/ /_  /  |/  /__\s
+                  / /| |/ / / / __/ __ \\/ /|_/ / _ \\
+                 / ___ / /_/ / /_/ / / / /  / /  __/
+                /_/  |_\\__,_/\\__/_/ /_/_/  /_/\\___/\s
+                                                   \s""");
         }
         //detect server brand with classloader
         checkServerType();
@@ -347,7 +349,7 @@ public class AuthMe extends JavaPlugin {
 
         //Register 3rd party listeners
         if (settings.getProperty(SecuritySettings.FORCE_LOGIN_BEDROCK) && settings.getProperty(HooksSettings.HOOK_FLOODGATE_PLAYER) && getServer().getPluginManager().getPlugin("floodgate") != null) {
-            pluginManager.registerEvents(injector.getSingleton(BedrockAutoLoginListener.class), this);
+            pluginManager.registerEvents(injector.getSingleton(AutoLoginListener.class), this);
         } else if (settings.getProperty(SecuritySettings.FORCE_LOGIN_BEDROCK) && (!settings.getProperty(HooksSettings.HOOK_FLOODGATE_PLAYER) || getServer().getPluginManager().getPlugin("floodgate") == null)) {
             logger.warning("Failed to enable BedrockAutoLogin, ensure hookFloodgate: true and floodgate is loaded.");
         }

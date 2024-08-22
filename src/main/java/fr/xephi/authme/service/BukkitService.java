@@ -24,6 +24,7 @@ import org.bukkit.potion.PotionEffectType;
 import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
@@ -392,11 +393,7 @@ public class BukkitService implements SettingsDependent {
      * @param bytes the message
      */
     public void sendVelocityMessage(Player player, byte[] bytes) {
-        if (player != null) {
-            player.sendPluginMessage(authMe, "authmevelocity:main", bytes);
-        } else {
-            Bukkit.getServer().sendPluginMessage(authMe, "authmevelocity:main", bytes);
-        }
+        Objects.requireNonNullElseGet(player, Bukkit::getServer).sendPluginMessage(authMe, "authmevelocity:main", bytes);
     }
 
 

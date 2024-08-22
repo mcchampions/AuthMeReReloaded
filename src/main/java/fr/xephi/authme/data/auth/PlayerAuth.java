@@ -183,10 +183,9 @@ public class PlayerAuth {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof PlayerAuth)) {
+        if (!(obj instanceof PlayerAuth other)) {
             return false;
         }
-        PlayerAuth other = (PlayerAuth) obj;
         return Objects.equals(other.lastIp, this.lastIp) && Objects.equals(other.nickname, this.nickname);
     }
 

@@ -33,10 +33,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - mcVersion: '1.8.8'
-            javaVersion: '8'
-          - mcVersion: '1.12.2'
-            javaVersion: '8'
           - mcVersion: '1.18.2'
             javaVersion: '17'
           - mcVersion: '1.20.4'

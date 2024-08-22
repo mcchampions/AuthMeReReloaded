@@ -169,6 +169,8 @@ two_factor:
 # 3rd party features: Bedrock Auto Login
 bedrock_auto_login:
   success: "&a基岩版自动登录完成"
+same_ip_auto_login:
+  success: "&a检测到你当前登录ip与上次相同,已自动为你登录"
 
 # 3rd party features: Login Location Fix
 login_location_fix:
