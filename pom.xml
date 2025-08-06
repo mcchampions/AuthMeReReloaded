@@ -13,38 +13,6 @@
     <inceptionYear>2013</inceptionYear>
     <url>https://github.com/AuthMe/AuthMeReloaded</url>
 
-    <organization>
-        <name>AuthMe-Team</name>
-        <url>https://github.com/AuthMe</url>
-    </organization>
-
-    <scm>
-        <connection>scm:git:https://github.com/AuthMe/AuthMeReloaded.git</connection>
-        <developerConnection>scm:git:git@github.com:AuthMe/AuthMeReloaded.git</developerConnection>
-        <url>https://github.com/AuthMe/AuthMeReloaded</url>
-    </scm>
-
-    <ciManagement>
-        <system>jenkins</system>
-        <url>https://ci.codemc.io/job/AuthMe/job/AuthMeReloaded/</url>
-    </ciManagement>
-
-    <issueManagement>
-        <system>GitHub</system>
-        <url>https://github.com/AuthMe/AuthMeReloaded/issues</url>
-    </issueManagement>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>codemc-snapshots</id>
-            <url>https://repo.codemc.io/repository/maven-snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>codemc-releases</id>
-            <url>https://repo.codemc.io/repository/maven-releases/</url>
-        </repository>
-    </distributionManagement>
-
     <licenses>
         <license>
             <name>The GNU Public Licence version 3 (GPLv3)</name>
